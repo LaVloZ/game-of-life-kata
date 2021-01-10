@@ -16,7 +16,7 @@ public class CellsTest {
         @Nested
         public class Underpopulation {
             @Test
-            public void update_returns_false_when_only_one_alive_neighbour() {
+            public void update_returns_dead_when_alive_cell_with_only_one_alive_neighbour() {
                 boolean deadCell = update(ALIVE, 1);
 
                 assertThat(deadCell).isEqualTo(DEAD);
