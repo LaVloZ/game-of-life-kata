@@ -51,7 +51,7 @@ public class CellsTest {
         }
 
         @Test
-        public void update_return_alive_when_alive_cell_with_two_alive_neighbours2() {
+        public void update_return_alive_when_alive_cell_with_three_alive_neighbours() {
             boolean deadCell = update(ALIVE, 3);
 
             assertThat(deadCell).isEqualTo(ALIVE);
