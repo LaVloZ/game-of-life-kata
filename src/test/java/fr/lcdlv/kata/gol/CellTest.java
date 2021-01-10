@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CellsTest {
+public class CellTest {
 
     private static final boolean ALIVE = true;
     private static final boolean DEAD = false;
