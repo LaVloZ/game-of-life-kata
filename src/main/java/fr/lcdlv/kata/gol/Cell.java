@@ -7,8 +7,8 @@ public class Cell {
 
     private final boolean alive;
 
-    public Cell(boolean alive) {
-        this.alive = alive;
+    public Cell(State state) {
+        this.alive = state.isAlive();
     }
 
     public boolean update(int aliveNeighbours) {
@@ -17,5 +17,4 @@ public class Cell {
         }
         return aliveNeighbours == THREE_ALIVE_NEIGHBOURS;
     }
-
 }
