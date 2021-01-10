@@ -41,7 +41,17 @@ public class CellsTest {
         }
     }
 
+    @Test
+    public void toto() {
+        boolean deadCell = update(ALIVE, 2);
+
+        assertThat(deadCell).isEqualTo(ALIVE);
+    }
+
     private boolean update(boolean cell, int aliveNeighbours) {
+        if(aliveNeighbours == 2) {
+            return true;
+        }
         return false;
     }
 }
