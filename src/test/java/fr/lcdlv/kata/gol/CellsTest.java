@@ -23,7 +23,7 @@ public class CellsTest {
             }
 
             @Test
-            public void update_returns_false_when_no_alive_neighbours() {
+            public void update_returns_dead_when_alive_cell_with_no_alive_neighbours() {
                 boolean deadCell = update(ALIVE, 0);
 
                 assertThat(deadCell).isEqualTo(DEAD);
