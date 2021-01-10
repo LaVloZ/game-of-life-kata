@@ -11,8 +11,8 @@ public class Cell {
         this.alive = alive;
     }
 
-    public static boolean update(Cell cell, int aliveNeighbours) {
-        if (cell.isAliveCell()) {
+    public boolean update(int aliveNeighbours) {
+        if (isAliveCell()) {
             return aliveNeighbours == TWO_ALIVE_NEIGHBOURS || aliveNeighbours == THREE_ALIVE_NEIGHBOURS;
         }
         return aliveNeighbours == THREE_ALIVE_NEIGHBOURS;
