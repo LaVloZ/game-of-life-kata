@@ -42,7 +42,7 @@ public class CellsTest {
     }
 
     @Test
-    public void toto() {
+    public void update_return_alive_when_alive_cell_with_two_alive_neighbours() {
         boolean deadCell = update(ALIVE, 2);
 
         assertThat(deadCell).isEqualTo(ALIVE);
