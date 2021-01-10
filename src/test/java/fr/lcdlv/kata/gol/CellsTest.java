@@ -50,8 +50,8 @@ public class CellsTest {
 
     private boolean update(boolean cell, int aliveNeighbours) {
         if(aliveNeighbours == 2) {
-            return true;
+            return ALIVE;
         }
-        return false;
+        return DEAD;
     }
 }
