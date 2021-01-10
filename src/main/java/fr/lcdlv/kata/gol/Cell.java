@@ -12,13 +12,10 @@ public class Cell {
     }
 
     public boolean update(int aliveNeighbours) {
-        if (isAliveCell()) {
+        if (alive) {
             return aliveNeighbours == TWO_ALIVE_NEIGHBOURS || aliveNeighbours == THREE_ALIVE_NEIGHBOURS;
         }
         return aliveNeighbours == THREE_ALIVE_NEIGHBOURS;
     }
 
-    private boolean isAliveCell() {
-        return alive;
-    }
 }
