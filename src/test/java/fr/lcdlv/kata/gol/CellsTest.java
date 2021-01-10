@@ -3,19 +3,21 @@ package fr.lcdlv.kata.gol;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class CellsTest {
 
+    private static final boolean ALIVE = true;
+    private static final boolean DEAD = false;
+
     @Test
-    public void test() {
-        boolean aliveCell = true;
-        int aliveAdjacentCells = 0;
+    public void update_returns_false_when_no_alive_neighbours() {
+        boolean deadCell = update(ALIVE, 0);
 
-        boolean deadCell = update(aliveCell, aliveAdjacentCells);
-
-        Assertions.assertThat(deadCell).isFalse();
+        assertThat(deadCell).isEqualTo(DEAD);
     }
 
-    private boolean update(boolean cell, int aliveAdjacentCells) {
+    private boolean update(boolean cell, int aliveNeighbours) {
         return false;
     }
 }
