@@ -16,15 +16,15 @@ public class CellsTest {
         @Nested
         public class Underpopulation {
             @Test
-            public void update_returns_dead_when_alive_cell_with_only_one_alive_neighbour() {
-                boolean deadCell = update(ALIVE, 1);
+            public void update_returns_dead_when_alive_cell_without_alive_neighbours() {
+                boolean deadCell = update(ALIVE, 0);
 
                 assertThat(deadCell).isEqualTo(DEAD);
             }
 
             @Test
-            public void update_returns_dead_when_alive_cell_without_alive_neighbours() {
-                boolean deadCell = update(ALIVE, 0);
+            public void update_returns_dead_when_alive_cell_with_only_one_alive_neighbour() {
+                boolean deadCell = update(ALIVE, 1);
 
                 assertThat(deadCell).isEqualTo(DEAD);
             }
