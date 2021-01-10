@@ -49,9 +49,16 @@ public class CellsTest {
 
             assertThat(deadCell).isEqualTo(ALIVE);
         }
+
+        @Test
+        public void update_return_alive_when_alive_cell_with_two_alive_neighbours2() {
+            boolean deadCell = update(ALIVE, 3);
+
+            assertThat(deadCell).isEqualTo(ALIVE);
+        }
     }
 
     private boolean update(boolean cell, int aliveNeighbours) {
-        return aliveNeighbours == 2;
+        return aliveNeighbours == 2 || aliveNeighbours == 3;
     }
 }
