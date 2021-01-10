@@ -23,8 +23,8 @@ public class CellsTest {
             }
 
             @Test
-            public void update_returns_false_when_four_alive_neighbours() {
-                boolean deadCell = update(ALIVE, 4);
+            public void update_returns_false_when_no_alive_neighbours() {
+                boolean deadCell = update(ALIVE, 0);
 
                 assertThat(deadCell).isEqualTo(DEAD);
             }
@@ -33,8 +33,8 @@ public class CellsTest {
         @Nested
         public class Overcrowding {
             @Test
-            public void update_returns_false_when_no_alive_neighbours() {
-                boolean deadCell = update(ALIVE, 0);
+            public void update_returns_false_when_four_alive_neighbours() {
+                boolean deadCell = update(ALIVE, 4);
 
                 assertThat(deadCell).isEqualTo(DEAD);
             }
