@@ -41,11 +41,14 @@ public class CellsTest {
         }
     }
 
-    @Test
-    public void update_return_alive_when_alive_cell_with_two_alive_neighbours() {
-        boolean deadCell = update(ALIVE, 2);
+    @Nested
+    public class Life {
+        @Test
+        public void update_return_alive_when_alive_cell_with_two_alive_neighbours() {
+            boolean deadCell = update(ALIVE, 2);
 
-        assertThat(deadCell).isEqualTo(ALIVE);
+            assertThat(deadCell).isEqualTo(ALIVE);
+        }
     }
 
     private boolean update(boolean cell, int aliveNeighbours) {
