@@ -49,9 +49,6 @@ public class CellsTest {
     }
 
     private boolean update(boolean cell, int aliveNeighbours) {
-        if(aliveNeighbours == 2) {
-            return ALIVE;
-        }
-        return DEAD;
+        return aliveNeighbours == 2;
     }
 }
