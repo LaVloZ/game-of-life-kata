@@ -17,14 +17,14 @@ public class CellsTest {
         public class Underpopulation {
             @Test
             public void update_returns_dead_when_alive_cell_without_alive_neighbours() {
-                boolean deadCell = update(ALIVE, 0);
+                boolean deadCell = Cell.update(ALIVE, 0);
 
                 assertThat(deadCell).isEqualTo(DEAD);
             }
 
             @Test
             public void update_returns_dead_when_alive_cell_with_only_one_alive_neighbour() {
-                boolean deadCell = update(ALIVE, 1);
+                boolean deadCell = Cell.update(ALIVE, 1);
 
                 assertThat(deadCell).isEqualTo(DEAD);
             }
@@ -34,7 +34,7 @@ public class CellsTest {
         public class Overcrowding {
             @Test
             public void update_returns_dead_when_alive_cell_with_four_alive_neighbours() {
-                boolean deadCell = update(ALIVE, 4);
+                boolean deadCell = Cell.update(ALIVE, 4);
 
                 assertThat(deadCell).isEqualTo(DEAD);
             }
@@ -45,20 +45,17 @@ public class CellsTest {
     public class Life {
         @Test
         public void update_return_alive_when_alive_cell_with_two_alive_neighbours() {
-            boolean deadCell = update(ALIVE, 2);
+            boolean deadCell = Cell.update(ALIVE, 2);
 
             assertThat(deadCell).isEqualTo(ALIVE);
         }
 
         @Test
         public void update_return_alive_when_alive_cell_with_three_alive_neighbours() {
-            boolean deadCell = update(ALIVE, 3);
+            boolean deadCell = Cell.update(ALIVE, 3);
 
             assertThat(deadCell).isEqualTo(ALIVE);
         }
     }
 
-    private boolean update(boolean cell, int aliveNeighbours) {
-        return aliveNeighbours == 2 || aliveNeighbours == 3;
-    }
 }
