@@ -30,11 +30,14 @@ public class CellsTest {
             }
         }
 
-        @Test
-        public void update_returns_false_when_no_alive_neighbours() {
-            boolean deadCell = update(ALIVE, 0);
+        @Nested
+        public class Overcrowding {
+            @Test
+            public void update_returns_false_when_no_alive_neighbours() {
+                boolean deadCell = update(ALIVE, 0);
 
-            assertThat(deadCell).isEqualTo(DEAD);
+                assertThat(deadCell).isEqualTo(DEAD);
+            }
         }
     }
 
