@@ -17,6 +17,13 @@ public class CellsTest {
         assertThat(deadCell).isEqualTo(DEAD);
     }
 
+    @Test
+    public void update_returns_false_when_only_one_alive_neighbour() {
+        boolean deadCell = update(ALIVE, 1);
+
+        assertThat(deadCell).isEqualTo(DEAD);
+    }
+
     private boolean update(boolean cell, int aliveNeighbours) {
         return false;
     }
