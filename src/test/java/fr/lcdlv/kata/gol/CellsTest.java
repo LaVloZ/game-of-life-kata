@@ -17,7 +17,7 @@ public class CellsTest {
                 {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
         };
 
-        Cell[][] updatedCells = update(cells);
+        Cell[][] updatedCells = nextGeneration(cells);
 
         assertThat(updatedCells).isEqualTo(new Cell[][]{
                 {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
@@ -27,7 +27,7 @@ public class CellsTest {
         });
     }
 
-    private Cell[][] update(Cell[][] cells) {
+    private Cell[][] nextGeneration(Cell[][] cells) {
         Cell[][] updatedCells = new Cell[cells.length][];
 
         for (int i = 0; i < cells.length; i++) {
