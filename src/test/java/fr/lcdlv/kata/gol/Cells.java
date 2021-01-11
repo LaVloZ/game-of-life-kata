@@ -44,9 +44,7 @@ public class Cells {
         tryToAdd(neighbours, row - 1, column + 1);
         tryToAdd(neighbours, row - 1, column - 1);
         tryToAdd(neighbours, row, column + 1);
-        if (column - 1 >= 0) {
-            neighbours.add(grid[row][column - 1]);
-        }
+        tryToAdd(neighbours, row, column - 1);
         return new Neighbours(neighbours);
     }
 
