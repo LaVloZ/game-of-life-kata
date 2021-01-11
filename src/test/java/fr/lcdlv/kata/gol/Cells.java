@@ -34,7 +34,11 @@ public class Cells {
     }
 
     private boolean isOnEdge(int i, int j) {
-        return isOnTopEdge(i) || isOnBottomEdge(i) || j == 0 || j == grid[i].length - 1;
+        return isOnTopEdge(i) || isOnBottomEdge(i) || isOnLeftEdge(j) || j == grid[i].length - 1;
+    }
+
+    private boolean isOnLeftEdge(int j) {
+        return j == 0;
     }
 
     private boolean isOnBottomEdge(int i) {
