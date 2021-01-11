@@ -37,15 +37,9 @@ public class Cells {
 
     private Neighbours getAliveNeighbours(int row, int column) {
         List<Cell> neighbours = new ArrayList<>();
-        if (row + 1 < grid.length) {
-            neighbours.add(grid[row + 1][column]);
-            if (column - 1 >= 0) {
-                neighbours.add(grid[row + 1][column - 1]);
-            }
-            if (column + 1 < grid[row].length) {
-                neighbours.add(grid[row + 1][column + 1]);
-            }
-        }
+            tryToAdd(neighbours, row + 1, column);
+            tryToAdd(neighbours, row + 1, column - 1);
+            tryToAdd(neighbours, row + 1, column + 1);
         if (row - 1 >= 0) {
             neighbours.add(grid[row - 1][column]);
             if (column + 1 < grid[row].length) {
@@ -62,6 +56,12 @@ public class Cells {
             neighbours.add(grid[row][column - 1]);
         }
         return new Neighbours(neighbours);
+    }
+
+    private void tryToAdd(List<Cell> cells, int row, int column) {
+        if(row >= 0 && row < grid.length && column >= 0 && column < grid[row].length) {
+            cells.add(grid[row][column]);
+        }
     }
 
     private static class Neighbours {
