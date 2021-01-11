@@ -40,11 +40,10 @@ public class Cells {
         tryToAdd(neighbours, row + 1, column);
         tryToAdd(neighbours, row + 1, column - 1);
         tryToAdd(neighbours, row + 1, column + 1);
-        if (row - 1 >= 0) {
-            tryToAdd(neighbours, row - 1, column);
-            tryToAdd(neighbours, row - 1, column + 1);
-            tryToAdd(neighbours, row - 1, column - 1);
-        }
+        tryToAdd(neighbours, row - 1, column);
+        tryToAdd(neighbours, row - 1, column + 1);
+        tryToAdd(neighbours, row - 1, column - 1);
+
         if (column + 1 < grid[row].length) {
             neighbours.add(grid[row][column + 1]);
         }
@@ -55,7 +54,7 @@ public class Cells {
     }
 
     private void tryToAdd(List<Cell> cells, int row, int column) {
-        if(row >= 0 && row < grid.length && column >= 0 && column < grid[row].length) {
+        if (row >= 0 && row < grid.length && column >= 0 && column < grid[row].length) {
             cells.add(grid[row][column]);
         }
     }
