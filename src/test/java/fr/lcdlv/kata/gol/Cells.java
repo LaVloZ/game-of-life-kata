@@ -1,6 +1,8 @@
 package fr.lcdlv.kata.gol;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static fr.lcdlv.kata.gol.Cell.DEAD;
 
@@ -33,15 +35,28 @@ public class Cells {
 
     private int getAliveNeighbours(int i, int j) {
         int aliveAdjacent = 0;
-        aliveAdjacent = grid[i + 1][j].countAlive(aliveAdjacent);
-        aliveAdjacent = grid[i - 1][j].countAlive(aliveAdjacent);
-        aliveAdjacent = grid[i][j + 1].countAlive(aliveAdjacent);
-        aliveAdjacent = grid[i][j - 1].countAlive(aliveAdjacent);
-        aliveAdjacent = grid[i + 1][j - 1].countAlive(aliveAdjacent);
-        aliveAdjacent = grid[i + 1][j + 1].countAlive(aliveAdjacent);
-        aliveAdjacent = grid[i - 1][j + 1].countAlive(aliveAdjacent);
-        aliveAdjacent = grid[i - 1][j - 1].countAlive(aliveAdjacent);
+        aliveAdjacent = getNeighbours(i, j).get(0).countAlive(aliveAdjacent);
+        aliveAdjacent = getNeighbours(i, j).get(1).countAlive(aliveAdjacent);
+        aliveAdjacent = getNeighbours(i, j).get(2).countAlive(aliveAdjacent);
+        aliveAdjacent = getNeighbours(i, j).get(3).countAlive(aliveAdjacent);
+        aliveAdjacent = getNeighbours(i, j).get(4).countAlive(aliveAdjacent);
+        aliveAdjacent = getNeighbours(i, j).get(5).countAlive(aliveAdjacent);
+        aliveAdjacent = getNeighbours(i, j).get(6).countAlive(aliveAdjacent);
+        aliveAdjacent = getNeighbours(i, j).get(7).countAlive(aliveAdjacent);
         return aliveAdjacent;
+    }
+
+    private List<Cell> getNeighbours(int row, int column) {
+        List<Cell> neighbours = new ArrayList<>();
+        neighbours.add(grid[row + 1][column]);
+        neighbours.add(grid[row-1][column]);
+        neighbours.add(grid[row][column + 1]);
+        neighbours.add(grid[row][column-1]);
+        neighbours.add(grid[row+1][column-1]);
+        neighbours.add(grid[row+1][column+1]);
+        neighbours.add(grid[row-1][column+1]);
+        neighbours.add(grid[row-1][column-1]);
+        return neighbours;
     }
 
     @Override
