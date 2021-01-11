@@ -16,53 +16,53 @@ public class Cells {
     public Cells nextGeneration() {
         Cell[][] updatedCells = new Cell[grid.length][];
 
-        for (int i = 0; i < grid.length; i++) {
-            updateRow(updatedCells, i);
+        for (int row = 0; row < grid.length; row++) {
+            updateRow(updatedCells, row);
         }
 
         return new Cells(updatedCells);
     }
 
-    private void updateRow(Cell[][] updatedCells, int i) {
-        updatedCells[i] = new Cell[grid[i].length];
-        for (int j = 0; j < grid[i].length; j++) {
-            updateCell(updatedCells, i, j);
+    private void updateRow(Cell[][] updatedCells, int row) {
+        updatedCells[row] = new Cell[grid[row].length];
+        for (int column = 0; column < grid[row].length; column++) {
+            updateCell(updatedCells, row, column);
         }
     }
 
-    private void updateCell(Cell[][] updatedCells, int i, int j) {
-        if (isOnEdge(i, j)) {
-            updateEdgedCell(updatedCells, i, j);
+    private void updateCell(Cell[][] updatedCells, int row, int column) {
+        if (isOnEdge(row, column)) {
+            updateEdgedCell(updatedCells, row, column);
             return;
         }
 
-        int aliveNeighbours = getAliveNeighbours(i, j);
-        Cell cell = grid[i][j];
-        updatedCells[i][j] = cell.update(aliveNeighbours);
+        int aliveNeighbours = getAliveNeighbours(row, column);
+        Cell cell = grid[row][column];
+        updatedCells[row][column] = cell.update(aliveNeighbours);
     }
 
-    private void updateEdgedCell(Cell[][] updatedCells, int i, int j) {
-        updatedCells[i][j] = DEAD;
+    private void updateEdgedCell(Cell[][] updatedCells, int row, int column) {
+        updatedCells[row][column] = DEAD;
     }
 
-    private boolean isOnEdge(int i, int j) {
-        return isOnTheTopEdge(i) || isOnTheBottomEdge(i) || isOnTheLeftEdge(j) || isOnTheRightEdge(i, j);
+    private boolean isOnEdge(int row, int column) {
+        return isOnTheTopEdge(row) || isOnTheBottomEdge(row) || isOnTheLeftEdge(column) || isOnTheRightEdge(row, column);
     }
 
-    private boolean isOnTheTopEdge(int i) {
-        return i == 0;
+    private boolean isOnTheTopEdge(int row) {
+        return row == 0;
     }
 
-    private boolean isOnTheBottomEdge(int i) {
-        return i == grid.length - 1;
+    private boolean isOnTheBottomEdge(int row) {
+        return row == grid.length - 1;
     }
 
-    private boolean isOnTheLeftEdge(int j) {
-        return j == 0;
+    private boolean isOnTheLeftEdge(int column) {
+        return column == 0;
     }
 
-    private boolean isOnTheRightEdge(int i, int j) {
-        return grid[i].length - 1 == j;
+    private boolean isOnTheRightEdge(int row, int column) {
+        return grid[row].length - 1 == column;
     }
 
     private int getAliveNeighbours(int i, int j) {
