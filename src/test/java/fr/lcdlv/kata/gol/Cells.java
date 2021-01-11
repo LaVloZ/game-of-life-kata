@@ -10,7 +10,7 @@ public class Cells {
     private final Cell[][] grid;
 
     public Cells(Cell[][] grid) {
-        this.grid = grid;
+        this.grid = grid.clone();
     }
 
     public Cells nextGeneration() {
