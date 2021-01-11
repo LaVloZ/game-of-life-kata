@@ -24,15 +24,15 @@ public class Cells {
     private void updateRow(Cell[][] updatedCells, int row) {
         updatedCells[row] = new Cell[grid[row].length];
         for (int column = 0; column < grid[row].length; column++) {
-            updateCell(updatedCells, row, column);
+            updatedCells[row][column] = updateCell(row, column);
         }
     }
 
-    private void updateCell(Cell[][] updatedCells, int row, int column) {
+    private Cell updateCell(int row, int column) {
         Neighbours aliveNeighbours = getAliveNeighbours(row, column);
         int aliveNeighboursCount = aliveNeighbours.count(0);
         Cell cell = grid[row][column];
-        updatedCells[row][column] = cell.update(aliveNeighboursCount);
+        return cell.update(aliveNeighboursCount);
     }
 
     private Neighbours getAliveNeighbours(int row, int column) {
