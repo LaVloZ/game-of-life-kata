@@ -19,7 +19,7 @@ public class Cells {
         for (int i = 0; i < grid.length; i++) {
             updatedCells[i] = new Cell[grid[i].length];
             for (int j = 0; j < grid[i].length; j++) {
-                if (i == 0 || i == grid.length - 1 || j == 0 || j == grid[i].length - 1) {
+                if (isOnEdge(i, j)) {
                     updatedCells[i][j] = DEAD;
                     continue;
                 }
@@ -31,6 +31,10 @@ public class Cells {
         }
 
         return new Cells(updatedCells);
+    }
+
+    private boolean isOnEdge(int i, int j) {
+        return i == 0 || i == grid.length - 1 || j == 0 || j == grid[i].length - 1;
     }
 
     private int getAliveNeighbours(int i, int j) {
