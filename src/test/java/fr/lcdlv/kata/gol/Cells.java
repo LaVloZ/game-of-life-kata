@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static fr.lcdlv.kata.gol.Cell.DEAD;
-
 public class Cells {
     private final Cell[][] grid;
 
@@ -37,58 +35,30 @@ public class Cells {
         updatedCells[row][column] = cell.update(aliveNeighboursCount);
     }
 
-    private void updateEdgedCell(Cell[][] updatedCells, int row, int column) {
-        updatedCells[row][column] = DEAD;
-    }
-
-    private boolean isOnEdge(int row, int column) {
-        return isOnTheTopEdge(row)
-                || isOnTheBottomEdge(row)
-                || isOnTheLeftEdge(column)
-                || isOnTheRightEdge(row, column)
-                ;
-    }
-
-    private boolean isOnTheTopEdge(int row) {
-        return row == 0;
-    }
-
-    private boolean isOnTheBottomEdge(int row) {
-        return row == grid.length - 1;
-    }
-
-    private boolean isOnTheLeftEdge(int column) {
-        return column == 0;
-    }
-
-    private boolean isOnTheRightEdge(int row, int column) {
-        return column == grid[row].length - 1;
-    }
-
     private Neighbours getAliveNeighbours(int row, int column) {
         List<Cell> neighbours = new ArrayList<>();
-        if(row + 1 < grid.length) {
+        if (row + 1 < grid.length) {
             neighbours.add(grid[row + 1][column]);
-            if(column - 1 >= 0) {
+            if (column - 1 >= 0) {
                 neighbours.add(grid[row + 1][column - 1]);
             }
-            if(column + 1 < grid[row].length) {
+            if (column + 1 < grid[row].length) {
                 neighbours.add(grid[row + 1][column + 1]);
             }
         }
-        if(row - 1 >= 0) {
+        if (row - 1 >= 0) {
             neighbours.add(grid[row - 1][column]);
-            if(column + 1 < grid[row].length) {
+            if (column + 1 < grid[row].length) {
                 neighbours.add(grid[row - 1][column + 1]);
             }
-            if(column - 1 >= 0) {
+            if (column - 1 >= 0) {
                 neighbours.add(grid[row - 1][column - 1]);
             }
         }
-        if(column + 1 < grid[row].length) {
+        if (column + 1 < grid[row].length) {
             neighbours.add(grid[row][column + 1]);
         }
-        if(column - 1 >= 0) {
+        if (column - 1 >= 0) {
             neighbours.add(grid[row][column - 1]);
         }
         return new Neighbours(neighbours);
