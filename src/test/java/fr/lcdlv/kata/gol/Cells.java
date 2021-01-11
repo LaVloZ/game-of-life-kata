@@ -69,7 +69,7 @@ public class Cells {
         return column == grid[row].length - 1;
     }
 
-    private Neighbours getNeighbours(int row, int column) {
+    private Neighbours getAliveNeighbours(int row, int column) {
         List<Cell> neighbours = List.of(
             grid[row + 1][column],
             grid[row - 1][column],
@@ -91,7 +91,7 @@ public class Cells {
         }
 
         private static Neighbours alive(Cells cells, int i, int j) {
-            return cells.getNeighbours(i, j);
+            return cells.getAliveNeighbours(i, j);
         }
 
         public int count(int conter) {
