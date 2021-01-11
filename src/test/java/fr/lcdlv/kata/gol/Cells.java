@@ -5,33 +5,33 @@ import java.util.Arrays;
 import static fr.lcdlv.kata.gol.Cell.DEAD;
 
 public class Cells {
-    private final Cell[][] cells;
+    private final Cell[][] grid;
 
-    public Cells(Cell[][] cells) {
-        this.cells = cells;
+    public Cells(Cell[][] grid) {
+        this.grid = grid;
     }
 
     public Cells nextGeneration() {
-        Cell[][] updatedCells = new Cell[cells.length][];
+        Cell[][] updatedCells = new Cell[grid.length][];
 
-        for (int i = 0; i < cells.length; i++) {
-            updatedCells[i] = new Cell[cells[i].length];
-            for (int j = 0; j < cells[i].length; j++) {
-                if(i == 0 || i == cells.length -1 || j == 0 || j == cells[i].length -1) {
+        for (int i = 0; i < grid.length; i++) {
+            updatedCells[i] = new Cell[grid[i].length];
+            for (int j = 0; j < grid[i].length; j++) {
+                if(i == 0 || i == grid.length -1 || j == 0 || j == grid[i].length -1) {
                     updatedCells[i][j] = DEAD;
                     continue;
                 }
 
-                Cell cell = cells[i][j];
+                Cell cell = grid[i][j];
                 int aliveAdjacent = 0;
-                aliveAdjacent = cells[i+1][j].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i-1][j].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i][j+1].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i][j-1].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i+1][j-1].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i+1][j+1].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i-1][j+1].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i-1][j-1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i+1][j].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i-1][j].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i][j+1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i][j-1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i+1][j-1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i+1][j+1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i-1][j+1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i-1][j-1].countAlive(aliveAdjacent);
 
                 updatedCells[i][j] = cell.update(aliveAdjacent);
             }
@@ -41,22 +41,22 @@ public class Cells {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cells cells1 = (Cells) o;
-        return Arrays.deepEquals(cells, cells1.cells);
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        Cells otherCell = (Cells) other;
+        return Arrays.deepEquals(grid, otherCell.grid);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(cells);
+        return Arrays.hashCode(grid);
     }
 
     @Override
     public String toString() {
         return "Cells{" +
-                "cells=" + Arrays.toString(cells) +
+                "cells=" + Arrays.toString(grid) +
                 '}';
     }
 }
