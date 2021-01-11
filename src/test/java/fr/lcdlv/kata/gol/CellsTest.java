@@ -17,7 +17,7 @@ public class CellsTest {
                 {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
         };
 
-        Cell[][] updatedCells = nextGeneration(cells);
+        Cell[][] updatedCells = new Cells(cells).nextGeneration();
 
         assertThat(updatedCells).isEqualTo(new Cell[][]{
                 {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
@@ -27,32 +27,4 @@ public class CellsTest {
         });
     }
 
-    private Cell[][] nextGeneration(Cell[][] cells) {
-        Cell[][] updatedCells = new Cell[cells.length][];
-
-        for (int i = 0; i < cells.length; i++) {
-            updatedCells[i] = new Cell[cells[i].length];
-            for (int j = 0; j < cells[i].length; j++) {
-                if(i == 0 || i == cells.length -1 || j == 0 || j == cells[i].length -1) {
-                    updatedCells[i][j] = DEAD;
-                    continue;
-                }
-
-                Cell cell = cells[i][j];
-                int aliveAdjacent = 0;
-                aliveAdjacent = cells[i+1][j].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i-1][j].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i][j+1].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i][j-1].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i+1][j-1].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i+1][j+1].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i-1][j+1].countAlive(aliveAdjacent);
-                aliveAdjacent = cells[i-1][j-1].countAlive(aliveAdjacent);
-
-                updatedCells[i][j] = cell.update(aliveAdjacent);
-            }
-        }
-
-        return updatedCells;
-    }
 }
