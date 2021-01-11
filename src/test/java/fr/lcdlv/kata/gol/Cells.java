@@ -46,7 +46,11 @@ public class Cells {
     }
 
     private boolean isOnEdge(int row, int column) {
-        return isOnTheTopEdge(row) || isOnTheBottomEdge(row) || isOnTheLeftEdge(column) || isOnTheRightEdge(row, column);
+        return isOnTheTopEdge(row)
+                || isOnTheBottomEdge(row)
+                || isOnTheLeftEdge(column)
+                || isOnTheRightEdge(row, column)
+                ;
     }
 
     private boolean isOnTheTopEdge(int row) {
