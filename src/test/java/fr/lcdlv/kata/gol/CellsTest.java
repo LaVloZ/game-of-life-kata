@@ -40,14 +40,14 @@ public class CellsTest {
 
                 Cell cell = cells[i][j];
                 int aliveAdjacent = 0;
-                aliveAdjacent += cells[i+1][j] == ALIVE ? 1 : 0;
-                aliveAdjacent += cells[i-1][j] == ALIVE ? 1 : 0;
-                aliveAdjacent += cells[i][j+1] == ALIVE ? 1 : 0;
-                aliveAdjacent += cells[i][j-1] == ALIVE ? 1 : 0;
-                aliveAdjacent += cells[i+1][j-1] == ALIVE ? 1 : 0;
-                aliveAdjacent += cells[i+1][j+1] == ALIVE ? 1 : 0;
-                aliveAdjacent += cells[i-1][j+1] == ALIVE ? 1 : 0;
-                aliveAdjacent += cells[i-1][j-1] == ALIVE ? 1 : 0;
+                aliveAdjacent = cells[i+1][j].countAlive(aliveAdjacent);
+                aliveAdjacent = cells[i-1][j].countAlive(aliveAdjacent);
+                aliveAdjacent = cells[i][j+1].countAlive(aliveAdjacent);
+                aliveAdjacent = cells[i][j-1].countAlive(aliveAdjacent);
+                aliveAdjacent = cells[i+1][j-1].countAlive(aliveAdjacent);
+                aliveAdjacent = cells[i+1][j+1].countAlive(aliveAdjacent);
+                aliveAdjacent = cells[i-1][j+1].countAlive(aliveAdjacent);
+                aliveAdjacent = cells[i-1][j-1].countAlive(aliveAdjacent);
 
                 updatedCells[i][j] = cell.update(aliveAdjacent);
             }

@@ -7,10 +7,20 @@ public enum Cell {
         public Cell update(int aliveNeighbours) {
             return aliveNeighbours == TWO_ALIVE_NEIGHBOURS || aliveNeighbours == THREE_ALIVE_NEIGHBOURS ? ALIVE : DEAD;
         }
+
+        @Override
+        public int countAlive(int counter) {
+            return counter + 1;
+        }
     }, DEAD {
         @Override
         public Cell update(int aliveNeighbours) {
             return aliveNeighbours == THREE_ALIVE_NEIGHBOURS ? ALIVE : DEAD;
+        }
+
+        @Override
+        public int countAlive(int counter) {
+            return counter;
         }
     };
 
@@ -18,4 +28,5 @@ public enum Cell {
     private static final int THREE_ALIVE_NEIGHBOURS = 3;
 
     public abstract Cell update(int aliveNeighbours);
+    public abstract int countAlive(int counter);
 }
