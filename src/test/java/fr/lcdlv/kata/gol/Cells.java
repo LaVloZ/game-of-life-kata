@@ -33,7 +33,7 @@ public class Cells {
         Neighbours aliveNeighbours = getAliveNeighbours(row, column);
         int aliveNeighboursCount = aliveNeighbours.count(0);
         Cell cell = grid[row][column];
-        return cell.update(aliveNeighboursCount);
+        return cell.nextGeneration(aliveNeighboursCount);
     }
 
     private Neighbours getAliveNeighbours(int row, int column) {
