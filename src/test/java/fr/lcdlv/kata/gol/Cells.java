@@ -70,12 +70,12 @@ public class Cells {
     }
 
     private int getAliveNeighbours(int i, int j) {
-        return getNeighbours(i, j).stream()
+        return getNeighbours(i, j).getValue().stream()
                 .mapToInt(cell -> cell.countAlive(0))
                 .sum();
     }
 
-    private List<Cell> getNeighbours(int row, int column) {
+    private Neighbours getNeighbours(int row, int column) {
         List<Cell> neighbours = new ArrayList<>();
         neighbours.add(grid[row + 1][column]);
         neighbours.add(grid[row - 1][column]);
@@ -85,7 +85,7 @@ public class Cells {
         neighbours.add(grid[row + 1][column + 1]);
         neighbours.add(grid[row - 1][column + 1]);
         neighbours.add(grid[row - 1][column - 1]);
-        return neighbours;
+        return new Neighbours(neighbours);
     }
 
     @Override
@@ -111,5 +111,17 @@ public class Cells {
             s += "\n";
         }
         return s;
+    }
+
+    public class Neighbours {
+        private final List<Cell> value;
+
+        public Neighbours(List<Cell> value) {
+            this.value = value;
+        }
+
+        public List<Cell> getValue() {
+            return value;
+        }
     }
 }
