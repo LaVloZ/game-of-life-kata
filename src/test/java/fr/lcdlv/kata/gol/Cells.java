@@ -35,9 +35,9 @@ public class Cells {
             return;
         }
 
-        int aliveNeighboursCounter = getAliveNeighbours(row, column).count(0);
+        int aliveNeighbours = getAliveNeighbours(row, column).count(0);
         Cell cell = grid[row][column];
-        updatedCells[row][column] = cell.update(aliveNeighboursCounter);
+        updatedCells[row][column] = cell.update(aliveNeighbours);
     }
 
     private void updateEdgedCell(Cell[][] updatedCells, int row, int column) {
