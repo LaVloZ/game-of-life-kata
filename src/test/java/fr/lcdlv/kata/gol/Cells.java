@@ -22,22 +22,26 @@ public class Cells {
                     continue;
                 }
 
+                int aliveAdjacent = getAliveNeighbours(i, j);
                 Cell cell = grid[i][j];
-                int aliveAdjacent = 0;
-                aliveAdjacent = grid[i + 1][j].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i - 1][j].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i][j + 1].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i][j - 1].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i + 1][j - 1].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i + 1][j + 1].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i - 1][j + 1].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i - 1][j - 1].countAlive(aliveAdjacent);
-
                 updatedCells[i][j] = cell.update(aliveAdjacent);
             }
         }
 
         return new Cells(updatedCells);
+    }
+
+    private int getAliveNeighbours(int i, int j) {
+        int aliveAdjacent = 0;
+        aliveAdjacent = grid[i + 1][j].countAlive(aliveAdjacent);
+        aliveAdjacent = grid[i - 1][j].countAlive(aliveAdjacent);
+        aliveAdjacent = grid[i][j + 1].countAlive(aliveAdjacent);
+        aliveAdjacent = grid[i][j - 1].countAlive(aliveAdjacent);
+        aliveAdjacent = grid[i + 1][j - 1].countAlive(aliveAdjacent);
+        aliveAdjacent = grid[i + 1][j + 1].countAlive(aliveAdjacent);
+        aliveAdjacent = grid[i - 1][j + 1].countAlive(aliveAdjacent);
+        aliveAdjacent = grid[i - 1][j - 1].countAlive(aliveAdjacent);
+        return aliveAdjacent;
     }
 
     @Override
