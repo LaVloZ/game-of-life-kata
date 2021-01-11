@@ -35,8 +35,7 @@ public class Cells {
             return;
         }
 
-        int aliveNeighboursCounter = 0;
-        aliveNeighboursCounter = getAliveNeighbours(row, column).count(aliveNeighboursCounter);
+        int aliveNeighboursCounter = getAliveNeighbours(row, column).count(0);
         Cell cell = grid[row][column];
         updatedCells[row][column] = cell.update(aliveNeighboursCounter);
     }
