@@ -17,20 +17,32 @@ public class Cells {
         Cell[][] updatedCells = new Cell[grid.length][];
 
         for (int i = 0; i < grid.length; i++) {
-            updatedCells[i] = new Cell[grid[i].length];
-            for (int j = 0; j < grid[i].length; j++) {
-                if (isOnEdge(i, j)) {
-                    updatedCells[i][j] = DEAD;
-                    continue;
-                }
-
-                int aliveNeighbours = getAliveNeighbours(i, j);
-                Cell cell = grid[i][j];
-                updatedCells[i][j] = cell.update(aliveNeighbours);
-            }
+            updateRow(updatedCells, i);
         }
 
         return new Cells(updatedCells);
+    }
+
+    private void updateRow(Cell[][] updatedCells, int i) {
+        updatedCells[i] = new Cell[grid[i].length];
+        for (int j = 0; j < grid[i].length; j++) {
+            updateCell(updatedCells, i, j);
+        }
+    }
+
+    private void updateCell(Cell[][] updatedCells, int i, int j) {
+        if (isOnEdge(i, j)) {
+            updateEdgedCell(updatedCells, i, j);
+            return;
+        }
+
+        int aliveNeighbours = getAliveNeighbours(i, j);
+        Cell cell = grid[i][j];
+        updatedCells[i][j] = cell.update(aliveNeighbours);
+    }
+
+    private void updateEdgedCell(Cell[][] updatedCells, int i, int j) {
+        updatedCells[i][j] = DEAD;
     }
 
     private boolean isOnEdge(int i, int j) {
