@@ -35,14 +35,9 @@ public class Cells {
 
     private int getAliveNeighbours(int i, int j) {
         int aliveAdjacent = 0;
-        aliveAdjacent = getNeighbours(i, j).get(0).countAlive(aliveAdjacent);
-        aliveAdjacent = getNeighbours(i, j).get(1).countAlive(aliveAdjacent);
-        aliveAdjacent = getNeighbours(i, j).get(2).countAlive(aliveAdjacent);
-        aliveAdjacent = getNeighbours(i, j).get(3).countAlive(aliveAdjacent);
-        aliveAdjacent = getNeighbours(i, j).get(4).countAlive(aliveAdjacent);
-        aliveAdjacent = getNeighbours(i, j).get(5).countAlive(aliveAdjacent);
-        aliveAdjacent = getNeighbours(i, j).get(6).countAlive(aliveAdjacent);
-        aliveAdjacent = getNeighbours(i, j).get(7).countAlive(aliveAdjacent);
+        aliveAdjacent = getNeighbours(i, j).stream()
+                .mapToInt(cell -> cell.countAlive(0))
+                .sum();
         return aliveAdjacent;
     }
 
