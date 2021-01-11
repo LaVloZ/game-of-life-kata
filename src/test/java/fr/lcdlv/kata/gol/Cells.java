@@ -1,5 +1,6 @@
 package fr.lcdlv.kata.gol;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,11 +31,6 @@ public class Cells {
     }
 
     private void updateCell(Cell[][] updatedCells, int row, int column) {
-        if (isOnEdge(row, column)) {
-            updateEdgedCell(updatedCells, row, column);
-            return;
-        }
-
         Neighbours aliveNeighbours = getAliveNeighbours(row, column);
         int aliveNeighboursCount = aliveNeighbours.count(0);
         Cell cell = grid[row][column];
@@ -70,16 +66,31 @@ public class Cells {
     }
 
     private Neighbours getAliveNeighbours(int row, int column) {
-        List<Cell> neighbours = List.of(
-            grid[row + 1][column],
-            grid[row - 1][column],
-            grid[row][column + 1],
-            grid[row][column - 1],
-            grid[row + 1][column - 1],
-            grid[row + 1][column + 1],
-            grid[row - 1][column + 1],
-            grid[row - 1][column - 1]
-        );
+        List<Cell> neighbours = new ArrayList<>();
+        if(row + 1 < grid.length) {
+            neighbours.add(grid[row + 1][column]);
+            if(column - 1 >= 0) {
+                neighbours.add(grid[row + 1][column - 1]);
+            }
+            if(column + 1 < grid[row].length) {
+                neighbours.add(grid[row + 1][column + 1]);
+            }
+        }
+        if(row - 1 >= 0) {
+            neighbours.add(grid[row - 1][column]);
+            if(column + 1 < grid[row].length) {
+                neighbours.add(grid[row - 1][column + 1]);
+            }
+            if(column - 1 >= 0) {
+                neighbours.add(grid[row - 1][column - 1]);
+            }
+        }
+        if(column + 1 < grid[row].length) {
+            neighbours.add(grid[row][column + 1]);
+        }
+        if(column - 1 >= 0) {
+            neighbours.add(grid[row][column - 1]);
+        }
         return new Neighbours(neighbours);
     }
 
