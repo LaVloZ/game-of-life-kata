@@ -15,17 +15,18 @@ public class Cells {
         Cell[][] updatedCells = new Cell[grid.length][];
 
         for (int row = 0; row < grid.length; row++) {
-            updateRow(updatedCells, row);
+            updatedCells[row] = updateRow(row);
         }
 
         return new Cells(updatedCells);
     }
 
-    private void updateRow(Cell[][] updatedCells, int row) {
-        updatedCells[row] = new Cell[grid[row].length];
+    private Cell[] updateRow(int row) {
+        Cell[] rowCell = new Cell[grid[row].length];
         for (int column = 0; column < grid[row].length; column++) {
-            updatedCells[row][column] = updateCell(row, column);
+            rowCell[column] = updateCell(row, column);
         }
+        return rowCell;
     }
 
     private Cell updateCell(int row, int column) {
