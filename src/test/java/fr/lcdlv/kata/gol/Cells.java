@@ -15,21 +15,21 @@ public class Cells {
         Cell[][] updatedCells = new Cell[grid.length][];
 
         for (int row = 0; row < grid.length; row++) {
-            updatedCells[row] = updateRow(row);
+            updatedCells[row] = nextRowGeneration(row);
         }
 
         return new Cells(updatedCells);
     }
 
-    private Cell[] updateRow(int row) {
+    private Cell[] nextRowGeneration(int row) {
         Cell[] rowCell = new Cell[grid[row].length];
         for (int column = 0; column < grid[row].length; column++) {
-            rowCell[column] = updateCell(row, column);
+            rowCell[column] = nextCellGeneration(row, column);
         }
         return rowCell;
     }
 
-    private Cell updateCell(int row, int column) {
+    private Cell nextCellGeneration(int row, int column) {
         Neighbours aliveNeighbours = getAliveNeighbours(row, column);
         int aliveNeighboursCount = aliveNeighbours.count(0);
         Cell cell = grid[row][column];
