@@ -36,9 +36,15 @@ public class Cells {
             return;
         }
 
-        int aliveNeighbours = Neighbours.getAliveNeighbours(this, row, column);
+        int aliveNeighbours = this.getAliveNeighbours(row, column);
         Cell cell = grid[row][column];
         updatedCells[row][column] = cell.update(aliveNeighbours);
+    }
+
+    private int getAliveNeighbours(int i, int j) {
+        return getNeighbours(i, j).value.stream()
+                .mapToInt(cell -> cell.countAlive(0))
+                .sum();
     }
 
     private void updateEdgedCell(Cell[][] updatedCells, int row, int column) {
@@ -89,11 +95,6 @@ public class Cells {
             this.value = value;
         }
 
-        private static int getAliveNeighbours(Cells cells, int i, int j) {
-            return cells.getNeighbours(i, j).value.stream()
-                    .mapToInt(cell -> cell.countAlive(0))
-                    .sum();
-        }
     }
 
     @Override
