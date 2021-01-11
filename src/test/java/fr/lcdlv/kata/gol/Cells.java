@@ -1,5 +1,7 @@
 package fr.lcdlv.kata.gol;
 
+import java.util.Arrays;
+
 import static fr.lcdlv.kata.gol.Cell.DEAD;
 
 public class Cells {
@@ -9,7 +11,7 @@ public class Cells {
         this.cells = cells;
     }
 
-    public Cell[][] nextGeneration() {
+    public Cells nextGeneration() {
         Cell[][] updatedCells = new Cell[cells.length][];
 
         for (int i = 0; i < cells.length; i++) {
@@ -35,7 +37,26 @@ public class Cells {
             }
         }
 
-        return updatedCells;
+        return new Cells(updatedCells);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cells cells1 = (Cells) o;
+        return Arrays.deepEquals(cells, cells1.cells);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(cells);
+    }
+
+    @Override
+    public String toString() {
+        return "Cells{" +
+                "cells=" + Arrays.toString(cells) +
+                '}';
+    }
 }

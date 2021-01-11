@@ -17,14 +17,15 @@ public class CellsTest {
                 {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
         };
 
-        Cell[][] updatedCells = new Cells(cells).nextGeneration();
+        Cells updatedCells = new Cells(cells).nextGeneration();
 
-        assertThat(updatedCells).isEqualTo(new Cell[][]{
-                {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
-                {DEAD, DEAD, DEAD, ALIVE,   ALIVE,  DEAD, DEAD, DEAD,},
-                {DEAD, DEAD, DEAD, ALIVE,   ALIVE,  DEAD, DEAD, DEAD,},
-                {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
-        });
+        assertThat(updatedCells).isEqualTo(new Cells(
+                new Cell[][]{
+                    {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
+                    {DEAD, DEAD, DEAD, ALIVE,   ALIVE,  DEAD, DEAD, DEAD,},
+                    {DEAD, DEAD, DEAD, ALIVE,   ALIVE,  DEAD, DEAD, DEAD,},
+                    {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
+        }));
     }
 
 }

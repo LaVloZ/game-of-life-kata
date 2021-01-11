@@ -12,6 +12,11 @@ public enum Cell {
         public int countAlive(int counter) {
             return counter + 1;
         }
+
+        @Override
+        public String toString() {
+            return "*";
+        }
     }, DEAD {
         @Override
         public Cell update(int aliveNeighbours) {
@@ -21,6 +26,11 @@ public enum Cell {
         @Override
         public int countAlive(int counter) {
             return counter;
+        }
+
+        @Override
+        public String toString() {
+            return ".";
         }
     };
 
