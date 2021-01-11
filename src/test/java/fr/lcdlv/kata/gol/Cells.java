@@ -94,9 +94,9 @@ public class Cells {
             return cells.getNeighbours(i, j);
         }
 
-        public int count(int aliveNeighbours) {
+        public int count(int conter) {
             return value.stream()
-                    .mapToInt(cell -> cell.countAlive(aliveNeighbours))
+                    .mapToInt(cell -> cell.countAlive(conter))
                     .sum();
         }
     }
