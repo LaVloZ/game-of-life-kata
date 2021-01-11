@@ -62,7 +62,7 @@ public class Cells {
     }
 
     private boolean isOnTheRightEdge(int row, int column) {
-        return grid[row].length - 1 == column;
+        return column == grid[row].length - 1;
     }
 
     private int getAliveNeighbours(int i, int j) {
