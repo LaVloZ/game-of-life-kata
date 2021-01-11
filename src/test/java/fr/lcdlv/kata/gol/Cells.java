@@ -36,7 +36,7 @@ public class Cells {
             return;
         }
 
-        int aliveNeighbours = Neighbours.aliveNeighbours(this, row, column);
+        int aliveNeighbours = Neighbours.alive(this, row, column);
         Cell cell = grid[row][column];
         updatedCells[row][column] = cell.update(aliveNeighbours);
     }
@@ -89,7 +89,7 @@ public class Cells {
             this.value = value;
         }
 
-        private static int aliveNeighbours(Cells cells, int i, int j) {
+        private static int alive(Cells cells, int i, int j) {
             return cells.getNeighbours(i, j).value.stream()
                     .mapToInt(cell -> cell.countAlive(0))
                     .sum();
