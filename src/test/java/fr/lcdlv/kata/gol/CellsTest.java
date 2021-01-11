@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CellsTest {
 
     @Test
-    public void toto() {
+    public void nextGeneration() {
         Cell[][] cells = new Cell[][]{
                 {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
                 {DEAD, DEAD, DEAD, DEAD,    ALIVE,  DEAD, DEAD, DEAD,},
