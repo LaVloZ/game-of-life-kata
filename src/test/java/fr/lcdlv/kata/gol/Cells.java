@@ -17,21 +17,21 @@ public class Cells {
         for (int i = 0; i < grid.length; i++) {
             updatedCells[i] = new Cell[grid[i].length];
             for (int j = 0; j < grid[i].length; j++) {
-                if(i == 0 || i == grid.length -1 || j == 0 || j == grid[i].length -1) {
+                if (i == 0 || i == grid.length - 1 || j == 0 || j == grid[i].length - 1) {
                     updatedCells[i][j] = DEAD;
                     continue;
                 }
 
                 Cell cell = grid[i][j];
                 int aliveAdjacent = 0;
-                aliveAdjacent = grid[i+1][j].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i-1][j].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i][j+1].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i][j-1].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i+1][j-1].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i+1][j+1].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i-1][j+1].countAlive(aliveAdjacent);
-                aliveAdjacent = grid[i-1][j-1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i + 1][j].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i - 1][j].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i][j + 1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i][j - 1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i + 1][j - 1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i + 1][j + 1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i - 1][j + 1].countAlive(aliveAdjacent);
+                aliveAdjacent = grid[i - 1][j - 1].countAlive(aliveAdjacent);
 
                 updatedCells[i][j] = cell.update(aliveAdjacent);
             }
@@ -55,8 +55,13 @@ public class Cells {
 
     @Override
     public String toString() {
-        return "Cells{" +
-                "cells=" + Arrays.toString(grid) +
-                '}';
+        String s = "";
+        for (Cell[] row : grid) {
+            for(Cell cell : row) {
+                s += cell.toString();
+            }
+            s += "\n";
+        }
+        return s;
     }
 }
