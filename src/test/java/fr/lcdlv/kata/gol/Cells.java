@@ -1,6 +1,5 @@
 package fr.lcdlv.kata.gol;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -71,15 +70,16 @@ public class Cells {
     }
 
     private Neighbours getNeighbours(int row, int column) {
-        List<Cell> neighbours = new ArrayList<>();
-        neighbours.add(grid[row + 1][column]);
-        neighbours.add(grid[row - 1][column]);
-        neighbours.add(grid[row][column + 1]);
-        neighbours.add(grid[row][column - 1]);
-        neighbours.add(grid[row + 1][column - 1]);
-        neighbours.add(grid[row + 1][column + 1]);
-        neighbours.add(grid[row - 1][column + 1]);
-        neighbours.add(grid[row - 1][column - 1]);
+        List<Cell> neighbours = List.of(
+            grid[row + 1][column],
+            grid[row - 1][column],
+            grid[row][column + 1],
+            grid[row][column - 1],
+            grid[row + 1][column - 1],
+            grid[row + 1][column + 1],
+            grid[row - 1][column + 1],
+            grid[row - 1][column - 1]
+        );
         return new Neighbours(neighbours);
     }
 
