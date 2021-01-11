@@ -35,10 +35,10 @@ public class Cells {
             return;
         }
 
-        int aliveNeighbours = 0;
-        aliveNeighbours = Neighbours.alive(this, row, column).count(aliveNeighbours);
+        int aliveNeighboursCounter = 0;
+        aliveNeighboursCounter = getAliveNeighbours(row, column).count(aliveNeighboursCounter);
         Cell cell = grid[row][column];
-        updatedCells[row][column] = cell.update(aliveNeighbours);
+        updatedCells[row][column] = cell.update(aliveNeighboursCounter);
     }
 
     private void updateEdgedCell(Cell[][] updatedCells, int row, int column) {
@@ -88,10 +88,6 @@ public class Cells {
 
         public Neighbours(List<Cell> value) {
             this.value = value;
-        }
-
-        private static Neighbours alive(Cells cells, int i, int j) {
-            return cells.getAliveNeighbours(i, j);
         }
 
         public int count(int conter) {
