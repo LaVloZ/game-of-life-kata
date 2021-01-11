@@ -30,13 +30,13 @@ public class Cells {
     }
 
     private Cell nextCellGeneration(int row, int column) {
-        Neighbours aliveNeighbours = getAliveNeighbours(row, column);
-        int aliveNeighboursCount = aliveNeighbours.count(0);
+        Neighbours neighbours = getNeighbours(row, column);
+        int aliveNeighbours = neighbours.countAlive(0);
         Cell cell = grid[row][column];
-        return cell.nextGeneration(aliveNeighboursCount);
+        return cell.nextGeneration(aliveNeighbours);
     }
 
-    private Neighbours getAliveNeighbours(int row, int column) {
+    private Neighbours getNeighbours(int row, int column) {
         List<Cell> neighbours = new ArrayList<>();
         tryToAdd(neighbours, row + 1, column);
         tryToAdd(neighbours, row + 1, column - 1);
@@ -63,7 +63,7 @@ public class Cells {
             this.cells = cells;
         }
 
-        public int count(int conter) {
+        public int countAlive(int conter) {
             return cells.stream()
                     .mapToInt(cell -> cell.countAlive(conter))
                     .sum();
