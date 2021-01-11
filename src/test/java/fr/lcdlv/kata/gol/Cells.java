@@ -42,9 +42,7 @@ public class Cells {
         tryToAdd(neighbours, row + 1, column + 1);
         if (row - 1 >= 0) {
             tryToAdd(neighbours, row - 1, column);
-            if (column + 1 < grid[row].length) {
-                neighbours.add(grid[row - 1][column + 1]);
-            }
+                tryToAdd(neighbours, row - 1, column + 1);
             if (column - 1 >= 0) {
                 neighbours.add(grid[row - 1][column - 1]);
             }
