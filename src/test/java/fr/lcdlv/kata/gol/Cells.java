@@ -88,6 +88,18 @@ public class Cells {
         return new Neighbours(neighbours);
     }
 
+    public class Neighbours {
+        private final List<Cell> value;
+
+        public Neighbours(List<Cell> value) {
+            this.value = value;
+        }
+
+        public List<Cell> getValue() {
+            return value;
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -111,17 +123,5 @@ public class Cells {
             s += "\n";
         }
         return s;
-    }
-
-    public class Neighbours {
-        private final List<Cell> value;
-
-        public Neighbours(List<Cell> value) {
-            this.value = value;
-        }
-
-        public List<Cell> getValue() {
-            return value;
-        }
     }
 }
