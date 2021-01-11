@@ -37,20 +37,20 @@ public class Cells {
         return isOnTheTopEdge(i) || isOnTheBottomEdge(i) || isOnTheLeftEdge(j) || isOnTheRightEdge(i, j);
     }
 
-    private boolean isOnTheRightEdge(int i, int j) {
-        return grid[i].length - 1 == j;
-    }
-
-    private boolean isOnTheLeftEdge(int j) {
-        return j == 0;
+    private boolean isOnTheTopEdge(int i) {
+        return i == 0;
     }
 
     private boolean isOnTheBottomEdge(int i) {
         return i == grid.length - 1;
     }
 
-    private boolean isOnTheTopEdge(int i) {
-        return i == 0;
+    private boolean isOnTheLeftEdge(int j) {
+        return j == 0;
+    }
+
+    private boolean isOnTheRightEdge(int i, int j) {
+        return grid[i].length - 1 == j;
     }
 
     private int getAliveNeighbours(int i, int j) {
