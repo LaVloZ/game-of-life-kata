@@ -78,13 +78,13 @@ public class Cells {
     private List<Cell> getNeighbours(int row, int column) {
         List<Cell> neighbours = new ArrayList<>();
         neighbours.add(grid[row + 1][column]);
-        neighbours.add(grid[row-1][column]);
+        neighbours.add(grid[row - 1][column]);
         neighbours.add(grid[row][column + 1]);
-        neighbours.add(grid[row][column-1]);
-        neighbours.add(grid[row+1][column-1]);
-        neighbours.add(grid[row+1][column+1]);
-        neighbours.add(grid[row-1][column+1]);
-        neighbours.add(grid[row-1][column-1]);
+        neighbours.add(grid[row][column - 1]);
+        neighbours.add(grid[row + 1][column - 1]);
+        neighbours.add(grid[row + 1][column + 1]);
+        neighbours.add(grid[row - 1][column + 1]);
+        neighbours.add(grid[row - 1][column - 1]);
         return neighbours;
     }
 
@@ -105,7 +105,7 @@ public class Cells {
     public String toString() {
         String s = "";
         for (Cell[] row : grid) {
-            for(Cell cell : row) {
+            for (Cell cell : row) {
                 s += cell.toString();
             }
             s += "\n";
