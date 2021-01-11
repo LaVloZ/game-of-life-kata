@@ -27,5 +27,4 @@ public class CellsTest {
                     {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
         }));
     }
-
 }
