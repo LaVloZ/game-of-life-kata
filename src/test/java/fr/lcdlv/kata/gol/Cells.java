@@ -90,13 +90,9 @@ public class Cells {
         }
 
         private static int getAliveNeighbours(Cells cells, int i, int j) {
-            return cells.getNeighbours(i, j).getValue().stream()
+            return cells.getNeighbours(i, j).value.stream()
                     .mapToInt(cell -> cell.countAlive(0))
                     .sum();
-        }
-
-        public List<Cell> getValue() {
-            return value;
         }
     }
 
