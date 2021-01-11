@@ -24,9 +24,9 @@ public class Cells {
                     continue;
                 }
 
-                int aliveAdjacent = getAliveNeighbours(i, j);
+                int aliveNeighbours = getAliveNeighbours(i, j);
                 Cell cell = grid[i][j];
-                updatedCells[i][j] = cell.update(aliveAdjacent);
+                updatedCells[i][j] = cell.update(aliveNeighbours);
             }
         }
 
