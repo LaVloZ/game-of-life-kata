@@ -37,11 +37,11 @@ public class Cells {
 
     private Neighbours getAliveNeighbours(int row, int column) {
         List<Cell> neighbours = new ArrayList<>();
-            tryToAdd(neighbours, row + 1, column);
-            tryToAdd(neighbours, row + 1, column - 1);
-            tryToAdd(neighbours, row + 1, column + 1);
+        tryToAdd(neighbours, row + 1, column);
+        tryToAdd(neighbours, row + 1, column - 1);
+        tryToAdd(neighbours, row + 1, column + 1);
         if (row - 1 >= 0) {
-            neighbours.add(grid[row - 1][column]);
+            tryToAdd(neighbours, row - 1, column);
             if (column + 1 < grid[row].length) {
                 neighbours.add(grid[row - 1][column + 1]);
             }
