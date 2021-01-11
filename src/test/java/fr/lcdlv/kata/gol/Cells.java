@@ -34,11 +34,9 @@ public class Cells {
     }
 
     private int getAliveNeighbours(int i, int j) {
-        int aliveAdjacent = 0;
-        aliveAdjacent = getNeighbours(i, j).stream()
+        return getNeighbours(i, j).stream()
                 .mapToInt(cell -> cell.countAlive(0))
                 .sum();
-        return aliveAdjacent;
     }
 
     private List<Cell> getNeighbours(int row, int column) {
