@@ -82,15 +82,15 @@ public class Cells {
         return new Neighbours(neighbours);
     }
 
-    public static class Neighbours {
-        private final List<Cell> value;
+    private static class Neighbours {
+        private final List<Cell> cells;
 
-        public Neighbours(List<Cell> value) {
-            this.value = value;
+        public Neighbours(List<Cell> cells) {
+            this.cells = cells;
         }
 
         public int count(int conter) {
-            return value.stream()
+            return cells.stream()
                     .mapToInt(cell -> cell.countAlive(conter))
                     .sum();
         }
