@@ -3,7 +3,6 @@ package fr.lcdlv.kata.gol;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -42,10 +41,6 @@ public class Cells {
         return cell.nextGeneration(aliveNeighbours);
     }
 
-    private boolean isInsideTheGrid(int row, int column) {
-        return row >= 0 && row < grid.length && column >= 0 && column < grid[row].length;
-    }
-
     private class Neighbours {
         private final List<Cell> cells;
 
@@ -81,6 +76,10 @@ public class Cells {
             }
 
             return Optional.empty();
+        }
+
+        private boolean isInsideTheGrid(int row, int column) {
+            return row >= 0 && row < grid.length && column >= 0 && column < grid[row].length;
         }
 
         public int countAlive(int conter) {
