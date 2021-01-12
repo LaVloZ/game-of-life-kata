@@ -51,9 +51,13 @@ public class Cells {
     }
 
     private void tryToAdd(List<Cell> cells, int row, int column) {
-        if (row >= 0 && row < grid.length && column >= 0 && column < grid[row].length) {
+        if (isInsideTheGrid(row, column)) {
             cells.add(grid[row][column]);
         }
+    }
+
+    private boolean isInsideTheGrid(int row, int column) {
+        return row >= 0 && row < grid.length && column >= 0 && column < grid[row].length;
     }
 
     private static class Neighbours {
