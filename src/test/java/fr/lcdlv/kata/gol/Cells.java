@@ -48,10 +48,10 @@ public class Cells {
         private final List<Cell> cells;
 
         public Neighbours(int row, int column) {
-            cells = getNeighbours(row, column);
+            cells = findNeighbours(row, column);
         }
 
-        private List<Cell> getNeighbours(int row, int column) {
+        private List<Cell> findNeighbours(int row, int column) {
             List<Cell> neighbours = new ArrayList<>();
 
             getCellFromIndex(row + 1, column).ifPresent(neighbours::add);
