@@ -48,7 +48,7 @@ public class Cells {
         private final List<Cell> cells;
 
         public Neighbours(int row, int column) {
-            cells = getNeighbours(Cells.this, row, column);
+            cells = getNeighbours(row, column);
         }
 
         private Optional<Cell> getCellFromIndex(Cells cells, int row, int column) {
@@ -60,17 +60,17 @@ public class Cells {
             return Optional.empty();
         }
 
-        private List<Cell> getNeighbours(Cells cells, int row, int column) {
+        private List<Cell> getNeighbours(int row, int column) {
             List<Cell> neighbours = new ArrayList<>();
 
-            getCellFromIndex(cells, row + 1, column).ifPresent(neighbours::add);
-            getCellFromIndex(cells, row + 1, column - 1).ifPresent(neighbours::add);
-            getCellFromIndex(cells, row + 1, column + 1).ifPresent(neighbours::add);
-            getCellFromIndex(cells, row - 1, column).ifPresent(neighbours::add);
-            getCellFromIndex(cells, row - 1, column + 1).ifPresent(neighbours::add);
-            getCellFromIndex(cells, row - 1, column - 1).ifPresent(neighbours::add);
-            getCellFromIndex(cells, row, column + 1).ifPresent(neighbours::add);
-            getCellFromIndex(cells, row, column - 1).ifPresent(neighbours::add);
+            getCellFromIndex(Cells.this, row + 1, column).ifPresent(neighbours::add);
+            getCellFromIndex(Cells.this, row + 1, column - 1).ifPresent(neighbours::add);
+            getCellFromIndex(Cells.this, row + 1, column + 1).ifPresent(neighbours::add);
+            getCellFromIndex(Cells.this, row - 1, column).ifPresent(neighbours::add);
+            getCellFromIndex(Cells.this, row - 1, column + 1).ifPresent(neighbours::add);
+            getCellFromIndex(Cells.this, row - 1, column - 1).ifPresent(neighbours::add);
+            getCellFromIndex(Cells.this, row, column + 1).ifPresent(neighbours::add);
+            getCellFromIndex(Cells.this, row, column - 1).ifPresent(neighbours::add);
 
             return neighbours;
         }
