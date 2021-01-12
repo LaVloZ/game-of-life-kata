@@ -3,6 +3,7 @@ package fr.lcdlv.kata.gol;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Cells {
     private final Cell[][] grid;
@@ -38,22 +39,25 @@ public class Cells {
 
     private Neighbours getNeighbours(int row, int column) {
         List<Cell> neighbours = new ArrayList<>();
-        tryToAdd(neighbours, row + 1, column);
-        tryToAdd(neighbours, row + 1, column - 1);
-        tryToAdd(neighbours, row + 1, column + 1);
-        tryToAdd(neighbours, row - 1, column);
-        tryToAdd(neighbours, row - 1, column + 1);
-        tryToAdd(neighbours, row - 1, column - 1);
-        tryToAdd(neighbours, row, column + 1);
-        tryToAdd(neighbours, row, column - 1);
+
+        getCellFromIndex(row + 1, column).ifPresent(neighbours::add);
+        getCellFromIndex(row + 1, column - 1).ifPresent(neighbours::add);
+        getCellFromIndex(row + 1, column + 1).ifPresent(neighbours::add);
+        getCellFromIndex(row - 1, column).ifPresent(neighbours::add);
+        getCellFromIndex(row - 1, column + 1).ifPresent(neighbours::add);
+        getCellFromIndex(row - 1, column - 1).ifPresent(neighbours::add);
+        getCellFromIndex(row, column + 1).ifPresent(neighbours::add);
+        getCellFromIndex(row, column - 1).ifPresent(neighbours::add);
 
         return new Neighbours(neighbours);
     }
 
-    private void tryToAdd(List<Cell> cells, int row, int column) {
+    private Optional<Cell> getCellFromIndex(int row, int column) {
         if (isInsideTheGrid(row, column)) {
-            cells.add(grid[row][column]);
+            Cell cell = grid[row][column];
+            return Optional.of(cell);
         }
+        return Optional.empty();
     }
 
     private boolean isInsideTheGrid(int row, int column) {
