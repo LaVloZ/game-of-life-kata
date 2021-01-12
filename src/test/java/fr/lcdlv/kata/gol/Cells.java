@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.*;
+
 public class Cells {
     private final Cell[][] grid;
 
@@ -56,7 +58,7 @@ public class Cells {
                     .stream()
                     .filter(Optional::isPresent)
                     .map(Optional::get)
-                    .collect(Collectors.toList());
+                    .collect(toList());
         }
 
         private List<Optional<Cell>> findNeighboursList(int row, int column) {
