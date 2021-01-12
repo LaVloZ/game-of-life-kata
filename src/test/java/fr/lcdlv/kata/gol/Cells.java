@@ -33,7 +33,7 @@ public class Cells {
     }
 
     private Cell nextCellGeneration(int row, int column) {
-        Neighbours neighbours = Neighbours.getNeighbours(this, row, column);
+        Neighbours neighbours = new Neighbours(row, column);
         int aliveNeighbours = neighbours.countAlive(0);
         Cell cell = grid[row][column];
 
@@ -44,14 +44,14 @@ public class Cells {
         return row >= 0 && row < grid.length && column >= 0 && column < grid[row].length;
     }
 
-    private static class Neighbours {
+    private class Neighbours {
         private final List<Cell> cells;
 
-        public Neighbours(List<Cell> cells) {
-            this.cells = cells;
+        public Neighbours(int row, int column) {
+            cells = getNeighbours(Cells.this, row, column);
         }
 
-        private static Optional<Cell> getCellFromIndex(Cells cells, int row, int column) {
+        private Optional<Cell> getCellFromIndex(Cells cells, int row, int column) {
             if (cells.isInsideTheGrid(row, column)) {
                 Cell cell = cells.grid[row][column];
                 return Optional.of(cell);
@@ -60,7 +60,7 @@ public class Cells {
             return Optional.empty();
         }
 
-        private static Neighbours getNeighbours(Cells cells, int row, int column) {
+        private List<Cell> getNeighbours(Cells cells, int row, int column) {
             List<Cell> neighbours = new ArrayList<>();
 
             getCellFromIndex(cells, row + 1, column).ifPresent(neighbours::add);
@@ -72,7 +72,7 @@ public class Cells {
             getCellFromIndex(cells, row, column + 1).ifPresent(neighbours::add);
             getCellFromIndex(cells, row, column - 1).ifPresent(neighbours::add);
 
-            return new Neighbours(neighbours);
+            return neighbours;
         }
 
         public int countAlive(int conter) {
