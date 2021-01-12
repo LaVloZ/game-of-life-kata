@@ -70,5 +70,4 @@ public class CellTest {
             assertThat(deadCell).isEqualTo(DEAD);
         }
     }
-
 }
