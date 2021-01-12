@@ -43,25 +43,16 @@ public class Cells {
     private Neighbours getNeighbours(int row, int column) {
         List<Cell> neighbours = new ArrayList<>();
 
-        getCellFromIndex(row + 1, column).ifPresent(neighbours::add);
-        getCellFromIndex(row + 1, column - 1).ifPresent(neighbours::add);
-        getCellFromIndex(row + 1, column + 1).ifPresent(neighbours::add);
-        getCellFromIndex(row - 1, column).ifPresent(neighbours::add);
-        getCellFromIndex(row - 1, column + 1).ifPresent(neighbours::add);
-        getCellFromIndex(row - 1, column - 1).ifPresent(neighbours::add);
-        getCellFromIndex(row, column + 1).ifPresent(neighbours::add);
-        getCellFromIndex(row, column - 1).ifPresent(neighbours::add);
+        Neighbours.getCellFromIndex(this, row + 1, column).ifPresent(neighbours::add);
+        Neighbours.getCellFromIndex(this, row + 1, column - 1).ifPresent(neighbours::add);
+        Neighbours.getCellFromIndex(this, row + 1, column + 1).ifPresent(neighbours::add);
+        Neighbours.getCellFromIndex(this, row - 1, column).ifPresent(neighbours::add);
+        Neighbours.getCellFromIndex(this, row - 1, column + 1).ifPresent(neighbours::add);
+        Neighbours.getCellFromIndex(this, row - 1, column - 1).ifPresent(neighbours::add);
+        Neighbours.getCellFromIndex(this, row, column + 1).ifPresent(neighbours::add);
+        Neighbours.getCellFromIndex(this, row, column - 1).ifPresent(neighbours::add);
 
         return new Neighbours(neighbours);
-    }
-
-    private Optional<Cell> getCellFromIndex(int row, int column) {
-        if (isInsideTheGrid(row, column)) {
-            Cell cell = grid[row][column];
-            return Optional.of(cell);
-        }
-
-        return Optional.empty();
     }
 
     private boolean isInsideTheGrid(int row, int column) {
@@ -73,6 +64,15 @@ public class Cells {
 
         public Neighbours(List<Cell> cells) {
             this.cells = cells;
+        }
+
+        private static Optional<Cell> getCellFromIndex(Cells cells, int row, int column) {
+            if (cells.isInsideTheGrid(row, column)) {
+                Cell cell = cells.grid[row][column];
+                return Optional.of(cell);
+            }
+
+            return Optional.empty();
         }
 
         public int countAlive(int conter) {
