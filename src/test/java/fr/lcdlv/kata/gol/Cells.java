@@ -33,26 +33,11 @@ public class Cells {
     }
 
     private Cell nextCellGeneration(int row, int column) {
-        Neighbours neighbours = getNeighbours(row, column);
+        Neighbours neighbours = Neighbours.getNeighbours(this, row, column);
         int aliveNeighbours = neighbours.countAlive(0);
         Cell cell = grid[row][column];
 
         return cell.nextGeneration(aliveNeighbours);
-    }
-
-    private Neighbours getNeighbours(int row, int column) {
-        List<Cell> neighbours = new ArrayList<>();
-
-        Neighbours.getCellFromIndex(this, row + 1, column).ifPresent(neighbours::add);
-        Neighbours.getCellFromIndex(this, row + 1, column - 1).ifPresent(neighbours::add);
-        Neighbours.getCellFromIndex(this, row + 1, column + 1).ifPresent(neighbours::add);
-        Neighbours.getCellFromIndex(this, row - 1, column).ifPresent(neighbours::add);
-        Neighbours.getCellFromIndex(this, row - 1, column + 1).ifPresent(neighbours::add);
-        Neighbours.getCellFromIndex(this, row - 1, column - 1).ifPresent(neighbours::add);
-        Neighbours.getCellFromIndex(this, row, column + 1).ifPresent(neighbours::add);
-        Neighbours.getCellFromIndex(this, row, column - 1).ifPresent(neighbours::add);
-
-        return new Neighbours(neighbours);
     }
 
     private boolean isInsideTheGrid(int row, int column) {
@@ -73,6 +58,21 @@ public class Cells {
             }
 
             return Optional.empty();
+        }
+
+        private static Neighbours getNeighbours(Cells cells, int row, int column) {
+            List<Cell> neighbours = new ArrayList<>();
+
+            getCellFromIndex(cells, row + 1, column).ifPresent(neighbours::add);
+            getCellFromIndex(cells, row + 1, column - 1).ifPresent(neighbours::add);
+            getCellFromIndex(cells, row + 1, column + 1).ifPresent(neighbours::add);
+            getCellFromIndex(cells, row - 1, column).ifPresent(neighbours::add);
+            getCellFromIndex(cells, row - 1, column + 1).ifPresent(neighbours::add);
+            getCellFromIndex(cells, row - 1, column - 1).ifPresent(neighbours::add);
+            getCellFromIndex(cells, row, column + 1).ifPresent(neighbours::add);
+            getCellFromIndex(cells, row, column - 1).ifPresent(neighbours::add);
+
+            return new Neighbours(neighbours);
         }
 
         public int countAlive(int conter) {
