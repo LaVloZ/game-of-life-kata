@@ -1,9 +1,9 @@
 package fr.lcdlv.kata.gol;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Cells {
     private final Cell[][] grid;
@@ -52,18 +52,24 @@ public class Cells {
         }
 
         private List<Cell> findNeighbours(int row, int column) {
-            List<Cell> neighbours = new ArrayList<>();
+            return findNeighboursList(row, column)
+                    .stream()
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
+                    .collect(Collectors.toList());
+        }
 
-            getCellFromIndex(row + 1, column).ifPresent(neighbours::add);
-            getCellFromIndex(row + 1, column - 1).ifPresent(neighbours::add);
-            getCellFromIndex(row + 1, column + 1).ifPresent(neighbours::add);
-            getCellFromIndex(row - 1, column).ifPresent(neighbours::add);
-            getCellFromIndex(row - 1, column + 1).ifPresent(neighbours::add);
-            getCellFromIndex(row - 1, column - 1).ifPresent(neighbours::add);
-            getCellFromIndex(row, column + 1).ifPresent(neighbours::add);
-            getCellFromIndex(row, column - 1).ifPresent(neighbours::add);
-
-            return neighbours;
+        private List<Optional<Cell>> findNeighboursList(int row, int column) {
+            return List.of(
+                    getCellFromIndex(row - 1, column - 1),
+                    getCellFromIndex(row - 1, column),
+                    getCellFromIndex(row - 1, column + 1),
+                    getCellFromIndex(row, column - 1),
+                    getCellFromIndex(row, column + 1),
+                    getCellFromIndex(row + 1, column - 1),
+                    getCellFromIndex(row + 1, column),
+                    getCellFromIndex(row + 1, column + 1)
+            );
         }
 
         private Optional<Cell> getCellFromIndex(int row, int column) {
