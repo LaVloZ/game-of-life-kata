@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.stream.Collectors.*;
-
 public class Cells {
     private final Cell[][] grid;
 
@@ -41,21 +39,13 @@ public class Cells {
     }
 
     private class Neighbours {
-        private final List<Cell> cells;
+        private final List<Optional<Cell>> cells;
 
         public Neighbours(int row, int column) {
             cells = findNeighbours(row, column);
         }
 
-        private List<Cell> findNeighbours(int row, int column) {
-            return findNeighboursList(row, column)
-                    .stream()
-                    .filter(Optional::isPresent)
-                    .map(Optional::get)
-                    .collect(toList());
-        }
-
-        private List<Optional<Cell>> findNeighboursList(int row, int column) {
+        private List<Optional<Cell>> findNeighbours(int row, int column) {
             return List.of(
                     getCellFromIndex(row - 1, column - 1),
                     getCellFromIndex(row - 1, column),
@@ -83,6 +73,8 @@ public class Cells {
 
         public int countAlive(int conter) {
             return cells.stream()
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
                     .mapToInt(cell -> cell.countAlive(conter))
                     .sum();
         }
