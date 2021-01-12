@@ -51,9 +51,9 @@ public class Cells {
             cells = getNeighbours(row, column);
         }
 
-        private Optional<Cell> getCellFromIndex(Cells cells, int row, int column) {
-            if (cells.isInsideTheGrid(row, column)) {
-                Cell cell = cells.grid[row][column];
+        private Optional<Cell> getCellFromIndex(int row, int column) {
+            if (isInsideTheGrid(row, column)) {
+                Cell cell = grid[row][column];
                 return Optional.of(cell);
             }
 
@@ -63,14 +63,14 @@ public class Cells {
         private List<Cell> getNeighbours(int row, int column) {
             List<Cell> neighbours = new ArrayList<>();
 
-            getCellFromIndex(Cells.this, row + 1, column).ifPresent(neighbours::add);
-            getCellFromIndex(Cells.this, row + 1, column - 1).ifPresent(neighbours::add);
-            getCellFromIndex(Cells.this, row + 1, column + 1).ifPresent(neighbours::add);
-            getCellFromIndex(Cells.this, row - 1, column).ifPresent(neighbours::add);
-            getCellFromIndex(Cells.this, row - 1, column + 1).ifPresent(neighbours::add);
-            getCellFromIndex(Cells.this, row - 1, column - 1).ifPresent(neighbours::add);
-            getCellFromIndex(Cells.this, row, column + 1).ifPresent(neighbours::add);
-            getCellFromIndex(Cells.this, row, column - 1).ifPresent(neighbours::add);
+            getCellFromIndex(row + 1, column).ifPresent(neighbours::add);
+            getCellFromIndex(row + 1, column - 1).ifPresent(neighbours::add);
+            getCellFromIndex(row + 1, column + 1).ifPresent(neighbours::add);
+            getCellFromIndex(row - 1, column).ifPresent(neighbours::add);
+            getCellFromIndex(row - 1, column + 1).ifPresent(neighbours::add);
+            getCellFromIndex(row - 1, column - 1).ifPresent(neighbours::add);
+            getCellFromIndex(row, column + 1).ifPresent(neighbours::add);
+            getCellFromIndex(row, column - 1).ifPresent(neighbours::add);
 
             return neighbours;
         }
