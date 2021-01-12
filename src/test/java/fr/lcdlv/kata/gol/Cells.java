@@ -24,9 +24,11 @@ public class Cells {
 
     private Cell[] nextRowGeneration(int row) {
         Cell[] rowCell = new Cell[grid[row].length];
+
         for (int column = 0; column < grid[row].length; column++) {
             rowCell[column] = nextCellGeneration(row, column);
         }
+
         return rowCell;
     }
 
@@ -34,6 +36,7 @@ public class Cells {
         Neighbours neighbours = getNeighbours(row, column);
         int aliveNeighbours = neighbours.countAlive(0);
         Cell cell = grid[row][column];
+
         return cell.nextGeneration(aliveNeighbours);
     }
 
@@ -57,6 +60,7 @@ public class Cells {
             Cell cell = grid[row][column];
             return Optional.of(cell);
         }
+
         return Optional.empty();
     }
 
@@ -83,6 +87,7 @@ public class Cells {
         if (this == other) return true;
         if (other == null || getClass() != other.getClass()) return false;
         Cells otherCell = (Cells) other;
+
         return Arrays.deepEquals(grid, otherCell.grid);
     }
 
@@ -100,6 +105,7 @@ public class Cells {
             }
             s += "\n";
         }
+
         return s;
     }
 }
