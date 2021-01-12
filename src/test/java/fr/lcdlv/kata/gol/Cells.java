@@ -34,8 +34,7 @@ public class Cells {
     }
 
     private Cell nextCellGeneration(int row, int column) {
-        Neighbours neighbours = new Neighbours(row, column);
-        int aliveNeighbours = neighbours.countAlive(0);
+        int aliveNeighbours = new Neighbours(row, column).countAlive(0);
         Cell cell = grid[row][column];
 
         return cell.nextGeneration(aliveNeighbours);
