@@ -51,15 +51,6 @@ public class Cells {
             cells = getNeighbours(row, column);
         }
 
-        private Optional<Cell> getCellFromIndex(int row, int column) {
-            if (isInsideTheGrid(row, column)) {
-                Cell cell = grid[row][column];
-                return Optional.of(cell);
-            }
-
-            return Optional.empty();
-        }
-
         private List<Cell> getNeighbours(int row, int column) {
             List<Cell> neighbours = new ArrayList<>();
 
@@ -73,6 +64,15 @@ public class Cells {
             getCellFromIndex(row, column - 1).ifPresent(neighbours::add);
 
             return neighbours;
+        }
+
+        private Optional<Cell> getCellFromIndex(int row, int column) {
+            if (isInsideTheGrid(row, column)) {
+                Cell cell = grid[row][column];
+                return Optional.of(cell);
+            }
+
+            return Optional.empty();
         }
 
         public int countAlive(int conter) {
