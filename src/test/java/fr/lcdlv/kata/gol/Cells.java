@@ -8,8 +8,9 @@ public class Cells {
     private final Cell[][] grid;
 
     public Cells(Cell[][] grid) {
-        this.grid = grid.clone();
+        this.grid = clone(grid);
     }
+
 
     public Cells nextGeneration() {
         Cell[][] updatedCells = new Cell[grid.length][];
@@ -30,7 +31,6 @@ public class Cells {
 
         return rowCell;
     }
-
     private Cell nextCellGeneration(int row, int column) {
         int aliveNeighbours = new Neighbours(row, column).countAlive(0);
         Cell cell = grid[row][column];
@@ -39,8 +39,8 @@ public class Cells {
     }
 
     private class Neighbours {
-        private final List<Optional<Cell>> cells;
 
+        private final List<Optional<Cell>> cells;
         public Neighbours(int row, int column) {
             cells = findNeighbours(row, column);
         }
@@ -78,8 +78,8 @@ public class Cells {
                     .mapToInt(cell -> cell.countAlive(conter))
                     .sum();
         }
-    }
 
+    }
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -87,6 +87,10 @@ public class Cells {
         Cells otherCell = (Cells) other;
 
         return Arrays.deepEquals(grid, otherCell.grid);
+    }
+
+    private Cell[][] clone(Cell[][] grid) {
+        return Arrays.stream(grid).map(Cell[]::clone).toArray(Cell[][]::new);
     }
 
     @Override
