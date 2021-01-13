@@ -13,7 +13,7 @@ public class Cells {
 
 
     public Cells nextGeneration() {
-        Cell[][] updatedCells = new Cell[grid.length][];
+        var updatedCells = new Cell[grid.length][];
 
         for (int row = 0; row < grid.length; row++) {
             updatedCells[row] = nextRowGeneration(row);
@@ -23,16 +23,16 @@ public class Cells {
     }
 
     private Cell[] nextRowGeneration(int row) {
-        Cell[] rowCell = new Cell[grid[row].length];
+        var rowCell = new Cell[grid[row].length];
 
-        for (int column = 0; column < grid[row].length; column++) {
+        for (var column = 0; column < grid[row].length; column++) {
             rowCell[column] = nextCellGeneration(row, column);
         }
 
         return rowCell;
     }
     private Cell nextCellGeneration(int row, int column) {
-        int aliveNeighbours = new Neighbours(row, column).countAlive(0);
+        var aliveNeighbours = new Neighbours(row, column).countAlive(0);
         Cell cell = grid[row][column];
 
         return cell.nextGeneration(aliveNeighbours);
@@ -100,7 +100,7 @@ public class Cells {
 
     @Override
     public String toString() {
-        String s = "";
+        var s = "";
         for (Cell[] row : grid) {
             for (Cell cell : row) {
                 s += cell.toString();

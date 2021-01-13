@@ -10,14 +10,14 @@ public class CellsTest {
 
     @Test
     public void nextGeneration() {
-        Cell[][] grid = new Cell[][]{
+        var grid = new Cell[][]{
                 {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
                 {DEAD, DEAD, DEAD, DEAD,    ALIVE,  DEAD, DEAD, DEAD,},
                 {DEAD, DEAD, DEAD, ALIVE,   ALIVE,  DEAD, DEAD, DEAD,},
                 {DEAD, DEAD, DEAD, DEAD,    DEAD,   DEAD, DEAD, DEAD,},
         };
 
-        Cells updatedCells = new Cells(grid).nextGeneration();
+        var updatedCells = new Cells(grid).nextGeneration();
 
         assertThat(updatedCells).isEqualTo(new Cells(
                 new Cell[][]{
