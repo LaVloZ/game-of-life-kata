@@ -95,7 +95,9 @@ public class Cells {
     }
 
     private Cell[][] clone(Cell[][] grid) {
-        return Arrays.stream(grid).map(Cell[]::clone).toArray(Cell[][]::new);
+        return Arrays.stream(grid)
+                .map(Cell[]::clone)
+                .toArray(Cell[][]::new);
     }
 
     @Override
