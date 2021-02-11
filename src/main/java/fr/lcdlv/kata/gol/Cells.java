@@ -74,15 +74,15 @@ public class Cells {
         }
 
         public Cell nextGeneration(Cell cell) {
-            var aliveNeighbours = countAlive(0);
+            var aliveNeighbours = countAlive();
             return cell.nextGeneration(aliveNeighbours);
         }
 
-        private int countAlive(int counter) {
+        private int countAlive() {
             return cells.stream()
-                    .filter(Optional::isPresent)
-                    .map(Optional::get)
-                    .mapToInt(cell -> cell.countAlive(counter))
+                    .map(maybeACell -> maybeACell.map(cell -> cell.countAlive(0))
+                            .orElse(0))
+                    .mapToInt(value -> value)
                     .sum();
         }
 
