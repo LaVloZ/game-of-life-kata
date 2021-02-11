@@ -3,8 +3,10 @@ package fr.lcdlv.kata.gol;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.joining;
 
 public class Cells {
     private final Cell[][] grid;
@@ -25,13 +27,10 @@ public class Cells {
     }
 
     private Cell[] nextRowGeneration(int row) {
-        var rowOfCells = new Cell[grid[row].length];
-
-        for (var column = 0; column < grid[row].length; column++) {
-            rowOfCells[column] = nextCellGeneration(row, column);
-        }
-
-        return rowOfCells;
+        var end = grid[row].length - 1;
+        return IntStream.rangeClosed(0, end)
+                .mapToObj(c -> nextCellGeneration(row, c))
+                .toArray(value -> new Cell[grid[row].length]);
     }
 
     private Cell nextCellGeneration(int row, int column) {
