@@ -17,16 +17,15 @@ public class Cells {
 
 
     public Cells nextGeneration() {
-        var nextGeneration = IntStream.rangeClosed(0, grid.length - 1)
+        var end = grid.length - 1;
+        var nextGeneration = IntStream.rangeClosed(0, end)
                 .mapToObj(this::nextRowGeneration)
                 .toArray(Cell[][]::new);
-
         return new Cells(nextGeneration);
     }
 
     private Cell[] nextRowGeneration(int row) {
         var end = grid[row].length - 1;
-
         return IntStream.rangeClosed(0, end)
                 .mapToObj(c -> nextCellGeneration(row, c))
                 .toArray(Cell[]::new);
