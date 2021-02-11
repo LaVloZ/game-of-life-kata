@@ -1,10 +1,12 @@
 package fr.lcdlv.kata.gol;
 
+import fr.lcdlv.kata.gol.Cells.Neighbours;
+
 public enum Cell {
 
     ALIVE {
         @Override
-        public Cell nextGeneration(int aliveNeighbours) {
+        Cell nextGeneration(int aliveNeighbours) {
             return aliveNeighbours == TWO_ALIVE_NEIGHBOURS || aliveNeighbours == THREE_ALIVE_NEIGHBOURS ? ALIVE : DEAD;
         }
 
@@ -19,7 +21,7 @@ public enum Cell {
         }
     }, DEAD {
         @Override
-        public Cell nextGeneration(int aliveNeighbours) {
+        Cell nextGeneration(int aliveNeighbours) {
             return aliveNeighbours == THREE_ALIVE_NEIGHBOURS ? ALIVE : DEAD;
         }
 
@@ -39,4 +41,9 @@ public enum Cell {
 
     abstract Cell nextGeneration(int aliveNeighbours);
     public abstract int countAlive(int counter);
+
+    public Cell nextGeneration(Neighbours neighbours) {
+        var aliveNeighbours = neighbours.countAlive();
+        return nextGeneration(aliveNeighbours);
+    }
 }

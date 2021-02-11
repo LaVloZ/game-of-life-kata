@@ -37,7 +37,7 @@ public class Cells {
         Cell cell = grid[row][column];
         var neighbours = new Neighbours(row, column);
 
-        return neighbours.nextGeneration(cell);
+        return cell.nextGeneration(neighbours);
     }
 
     class Neighbours {
@@ -73,12 +73,7 @@ public class Cells {
             return row >= 0 && row < grid.length && column >= 0 && column < grid[row].length;
         }
 
-        public Cell nextGeneration(Cell cell) {
-            var aliveNeighbours = countAlive();
-            return cell.nextGeneration(aliveNeighbours);
-        }
-
-        private int countAlive() {
+        int countAlive() {
             return cells.stream()
                     .map(maybeACell -> maybeACell.map(cell -> cell.countAlive(0))
                             .orElse(0))
