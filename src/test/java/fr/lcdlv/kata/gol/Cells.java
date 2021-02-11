@@ -1,8 +1,13 @@
 package fr.lcdlv.kata.gol;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.*;
 
 public class Cells {
     private final Cell[][] grid;
@@ -100,14 +105,10 @@ public class Cells {
 
     @Override
     public String toString() {
-        var s = "";
-        for (Cell[] row : grid) {
-            for (Cell cell : row) {
-                s += cell.toString();
-            }
-            s += "\n";
-        }
-
-        return s;
+        return Arrays.stream(grid)
+                .map(cells -> Arrays.stream(cells)
+                    .map(Enum::toString)
+                    .collect(joining()))
+                .collect(joining("\n"));
     }
 }
