@@ -15,23 +15,23 @@ public class Cells {
 
 
     public Cells nextGeneration() {
-        var updatedCells = new Cell[grid.length][];
+        var nextGeneration = new Cell[grid.length][];
 
         for (int row = 0; row < grid.length; row++) {
-            updatedCells[row] = nextRowGeneration(row);
+            nextGeneration[row] = nextRowGeneration(row);
         }
 
-        return new Cells(updatedCells);
+        return new Cells(nextGeneration);
     }
 
     private Cell[] nextRowGeneration(int row) {
-        var rowCell = new Cell[grid[row].length];
+        var rowOfCells = new Cell[grid[row].length];
 
         for (var column = 0; column < grid[row].length; column++) {
-            rowCell[column] = nextCellGeneration(row, column);
+            rowOfCells[column] = nextCellGeneration(row, column);
         }
 
-        return rowCell;
+        return rowOfCells;
     }
     private Cell nextCellGeneration(int row, int column) {
         Cell cell = grid[row][column];
