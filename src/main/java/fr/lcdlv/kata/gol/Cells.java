@@ -49,18 +49,18 @@ public class Cells {
 
         private List<Optional<Cell>> findNeighbours(int row, int column) {
             return List.of(
-                    getCellFromIndex(row - 1, column - 1),
-                    getCellFromIndex(row - 1, column),
-                    getCellFromIndex(row - 1, column + 1),
-                    getCellFromIndex(row, column - 1),
-                    getCellFromIndex(row, column + 1),
-                    getCellFromIndex(row + 1, column - 1),
-                    getCellFromIndex(row + 1, column),
-                    getCellFromIndex(row + 1, column + 1)
+                    cellFromIndex(row - 1, column - 1),
+                    cellFromIndex(row - 1, column),
+                    cellFromIndex(row - 1, column + 1),
+                    cellFromIndex(row, column - 1),
+                    cellFromIndex(row, column + 1),
+                    cellFromIndex(row + 1, column - 1),
+                    cellFromIndex(row + 1, column),
+                    cellFromIndex(row + 1, column + 1)
             );
         }
 
-        private Optional<Cell> getCellFromIndex(int row, int column) {
+        private Optional<Cell> cellFromIndex(int row, int column) {
             if (isInsideTheGrid(row, column)) {
                 Cell cell = grid[row][column];
                 return Optional.of(cell);
