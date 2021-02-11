@@ -26,6 +26,7 @@ public class Cells {
 
     private Cell[] nextRowGeneration(int row) {
         var end = grid[row].length - 1;
+
         return IntStream.rangeClosed(0, end)
                 .mapToObj(c -> nextCellGeneration(row, c))
                 .toArray(Cell[]::new);
