@@ -33,6 +33,7 @@ public class Cells {
 
         return rowOfCells;
     }
+
     private Cell nextCellGeneration(int row, int column) {
         Cell cell = grid[row][column];
         var neighbours = new Neighbours(row, column);
