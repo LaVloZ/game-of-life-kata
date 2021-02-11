@@ -17,11 +17,9 @@ public class Cells {
 
 
     public Cells nextGeneration() {
-        var nextGeneration = new Cell[grid.length][];
-
-        for (int row = 0; row < grid.length; row++) {
-            nextGeneration[row] = nextRowGeneration(row);
-        }
+        var nextGeneration = IntStream.rangeClosed(0, grid.length - 1)
+                .mapToObj(this::nextRowGeneration)
+                .toArray(Cell[][]::new);
 
         return new Cells(nextGeneration);
     }
@@ -30,7 +28,7 @@ public class Cells {
         var end = grid[row].length - 1;
         return IntStream.rangeClosed(0, end)
                 .mapToObj(c -> nextCellGeneration(row, c))
-                .toArray(value -> new Cell[grid[row].length]);
+                .toArray(Cell[]::new);
     }
 
     private Cell nextCellGeneration(int row, int column) {
