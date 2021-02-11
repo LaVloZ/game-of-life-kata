@@ -87,6 +87,13 @@ public class Cells {
         }
 
     }
+
+    private Cell[][] clone(Cell[][] grid) {
+        return Arrays.stream(grid)
+                .map(Cell[]::clone)
+                .toArray(Cell[][]::new);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -94,12 +101,6 @@ public class Cells {
         Cells otherCell = (Cells) other;
 
         return Arrays.deepEquals(grid, otherCell.grid);
-    }
-
-    private Cell[][] clone(Cell[][] grid) {
-        return Arrays.stream(grid)
-                .map(Cell[]::clone)
-                .toArray(Cell[][]::new);
     }
 
     @Override
