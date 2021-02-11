@@ -76,11 +76,11 @@ public class Cells {
             return row >= 0 && row < grid.length && column >= 0 && column < grid[row].length;
         }
 
-        public int countAlive(int conter) {
+        public int countAlive(int counter) {
             return cells.stream()
                     .filter(Optional::isPresent)
                     .map(Optional::get)
-                    .mapToInt(cell -> cell.countAlive(conter))
+                    .mapToInt(cell -> cell.countAlive(counter))
                     .sum();
         }
 
