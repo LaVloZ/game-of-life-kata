@@ -61,7 +61,7 @@ public class Cells {
         }
 
         private Optional<Cell> cellFromIndex(int row, int column) {
-            if (isInsideTheGrid(row, column)) {
+            if (indexIsInsideTheGrid(row, column)) {
                 Cell cell = grid[row][column];
                 return Optional.of(cell);
             }
@@ -69,7 +69,7 @@ public class Cells {
             return Optional.empty();
         }
 
-        private boolean isInsideTheGrid(int row, int column) {
+        private boolean indexIsInsideTheGrid(int row, int column) {
             return row >= 0 && row < grid.length && column >= 0 && column < grid[row].length;
         }
 
