@@ -1,5 +1,7 @@
 package fr.lcdlv.kata.gol;
 
+import fr.lcdlv.kata.gol.Cells.Neighbours;
+
 public enum Cell {
 
     ALIVE {
@@ -36,6 +38,11 @@ public enum Cell {
 
     private static final int TWO_ALIVE_NEIGHBOURS = 2;
     private static final int THREE_ALIVE_NEIGHBOURS = 3;
+
+    Cell nextGeneration(Neighbours neighbours) {
+        var aliveNeighbours = neighbours.countAlive(0);
+        return nextGeneration(aliveNeighbours);
+    }
 
     public abstract Cell nextGeneration(int aliveNeighbours);
     public abstract int countAlive(int counter);

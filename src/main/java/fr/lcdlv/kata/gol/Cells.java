@@ -1,11 +1,8 @@
 package fr.lcdlv.kata.gol;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -37,13 +34,13 @@ public class Cells {
         return rowCell;
     }
     private Cell nextCellGeneration(int row, int column) {
-        var aliveNeighbours = new Neighbours(row, column).countAlive(0);
         Cell cell = grid[row][column];
+        var neighbours = new Neighbours(row, column);
 
-        return cell.nextGeneration(aliveNeighbours);
+        return cell.nextGeneration(neighbours);
     }
 
-    private class Neighbours {
+    class Neighbours {
 
         private final List<Optional<Cell>> cells;
         public Neighbours(int row, int column) {
