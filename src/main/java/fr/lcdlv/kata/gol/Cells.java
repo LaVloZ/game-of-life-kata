@@ -77,7 +77,6 @@ public class Cells {
                     .mapToInt(value -> value)
                     .sum();
         }
-
     }
 
     private Cell[][] clone(Cell[][] grid) {
