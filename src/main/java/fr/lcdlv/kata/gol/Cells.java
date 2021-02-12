@@ -86,12 +86,12 @@ public class Cells {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
-        Cells otherCell = (Cells) other;
+    public boolean equals(Object anOther) {
+        if (this == anOther) return true;
+        if (anOther == null || getClass() != anOther.getClass()) return false;
+        Cells anOtherCell = (Cells) anOther;
 
-        return Arrays.deepEquals(grid, otherCell.grid);
+        return Arrays.deepEquals(grid, anOtherCell.grid);
     }
 
     @Override
