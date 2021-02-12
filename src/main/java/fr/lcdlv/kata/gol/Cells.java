@@ -72,7 +72,7 @@ public class Cells {
 
         int countAlive() {
             return cells.stream()
-                    .map(maybeACell -> maybeACell.map(cell -> cell.countAlive(0))
+                    .map(maybeANeighbour -> maybeANeighbour.map(neighbour -> neighbour.countAlive(0))
                             .orElse(0))
                     .mapToInt(value -> value)
                     .sum();
