@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
@@ -14,7 +13,6 @@ public class Cells {
     public Cells(Cell[][] grid) {
         this.grid = clone(grid);
     }
-
 
     public Cells nextGeneration() {
         var end = grid.length - 1;
@@ -41,6 +39,7 @@ public class Cells {
     class Neighbours {
 
         private final List<Optional<Cell>> cells;
+
         public Neighbours(int row, int column) {
             cells = findNeighbours(row, column);
         }
@@ -105,8 +104,8 @@ public class Cells {
     public String toString() {
         return Arrays.stream(grid)
                 .map(cells -> Arrays.stream(cells)
-                    .map(Enum::toString)
-                    .collect(joining()))
+                        .map(Enum::toString)
+                        .collect(joining()))
                 .collect(joining("\n"));
     }
 }
